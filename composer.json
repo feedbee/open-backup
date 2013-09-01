@@ -1,0 +1,17 @@
+{
+    "name": "feedbee/open-backup",
+
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        }
+    ],
+
+    "require": {
+        "zendframework/zend-loader": "2.2.*",
+        "zendframework/zend-config": "2.2.*",
+        "zendframework/zend-log": "2.2.*",
+        "zendframework/zend-json": "2.2.*"
+    }
+}

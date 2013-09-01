@@ -1,0 +1,117 @@
+{
+    "about": {
+        "name": "Test",
+        "author": "feedbee"
+    },
+
+    "snapshots": [
+        {
+            "title": "Simple file test",
+            "enabled": true,
+            "filename": "simple-file-test",
+            "basePath": "tests-sample-data/backuped",
+            "controllers": [
+                {
+                    "controller": "FileSystem",
+                    "parameters": {
+                        "path": "tests-sample-data/original/simple-file-test/file.txt",
+                        "filename": "file.txt.gz",
+                        "tar": false,
+                        "gzip": true
+                    },
+                    "section": "files"
+                }
+            ],
+            "plugins": {
+                "preBackup": [],
+                "preRestore": [],
+                "postBackup": [],
+                "postRestore": []
+            },
+            "options": {
+                "tar": true,
+                "gzip": false
+            }
+        },
+
+        {
+            "title": "Test",
+            "enabled": false,
+            "filename": "test",
+            "basePath": "/home/feedbee/test",
+            "controllers": [
+                {
+                    "controller": "Set",
+                    "parameters": [
+                        {
+                            "controller": "Database",
+                            "parameters": {
+                                "url": "mysql://test:test@localhost:3306/test",
+                                "filename": "",
+                                "gzip": true
+                            }
+                        },
+                        {
+                            "controller": "database",
+                            "parameters": {
+                                "url": "mysql://test:test@localhost:3306/test",
+                                "filename": "",
+                                "gzip": false
+                            }
+                        }
+                    ],
+                    "section": "db"
+                },
+                {
+                    "controller": "FileSystem",
+                    "parameters": {
+                        "path": "/tmp",
+                        "filename": "",
+                        "tar": true,
+                        "gzip": true
+                    },
+                    "section": "files"
+                }
+            ],
+            "plugins": {
+                "preBackup": [],
+                "preRestore": [],
+                "postBackup": [],
+                "postRestore": []
+            },
+            "options": {
+                "tar": true,
+                "gzip": false
+            }
+        },
+
+        {
+            "title": "Test 2",
+            "enabled": false,
+            "filename": "test2",
+            "basePath": "/home/feedbee/test",
+            "controllers": [
+                {
+                    "controller": "FileSystem",
+                    "parameters": {
+                        "path": "/home/feedbee/test/files/test.rb",
+                        "filename": "test.rb.gz",
+                        "tar": false,
+                        "gzip": true
+                    },
+                    "section": ""
+                }
+            ],
+            "plugins": {
+                "preBackup": [],
+                "preRestore": [],
+                "postBackup": [],
+                "postRestore": []
+            },
+            "options": {
+                "tar": false,
+                "gzip": false
+            }
+        }
+    ]
+}
