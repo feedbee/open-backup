@@ -7,7 +7,7 @@
     "snapshots": [
         {
             "title": "Simple file test",
-            "enabled": true,
+            "enabled": false,
             "filename": "simple-file-test",
             "basePath": "tests-sample-data/backuped",
             "controllers": [
@@ -31,6 +31,34 @@
             "options": {
                 "tar": true,
                 "gzip": false
+            }
+        },
+
+        {
+            "title": "Simple MySQL test",
+            "enabled": true,
+            "filename": "simple-mysql-test",
+            "basePath": "tests-sample-data/backuped",
+            "controllers": [
+                {
+                    "controller": "Database",
+                    "parameters": {
+                        "url": "mysql://test:test@localhost:3306/test",
+                        "filename": "test.sql",
+                        "gzip": false
+                    },
+                    "section": "db"
+                }
+            ],
+            "plugins": {
+                "preBackup": [],
+                "preRestore": [],
+                "postBackup": [],
+                "postRestore": []
+            },
+            "options": {
+                "tar": true,
+                "gzip": true
             }
         },
 

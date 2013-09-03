@@ -54,6 +54,43 @@ class Database extends AbstractBase
 	
 	public function restore($path)
 	{
-		throw new \Exception('Not yet implemented');
+		$url = $this->_getParameter('url');
+		$gzip = $this->_getParameter('gzip');
+		$filename =  $this->_getParameter('filename');
+
+		if (empty($filename))
+		{
+			$filename = date('Y-m-d_H-i-s') . '.sql';
+			if ($gzip)
+			{
+				$filename .= '.gz';
+			}
+		}
+
+		$sourcePath = $path . DIRECTORY_SEPARATOR . $filename;
+
+		$restoreCommand = new Mysqldump;
+
+		if (!$gzip)
+		{
+			$targetCommand = $restoreCommand;
+		}
+		else
+		{
+			$gzipCommand = new Gzip;
+
+			$pipe = new Pipe;
+			$pipe->addCommand($gzipCommand);
+			$pipe->addCommand($restoreCommand);
+
+			$targetCommand = $pipe;
+		}
+
+		$task = new Task($targetCommand, $url, $sourcePath);
+
+		$job = new Job(Job::MODE_RESTORE);
+		$job->addTask($task);
+
+		return $this->getExecutor()->execute($job->getCommands());
 	}
 }
